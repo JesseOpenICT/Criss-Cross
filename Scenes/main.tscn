@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=3 uid="uid://b48vlp02oy464"]
+
+[ext_resource type="PackedScene" uid="uid://pjs8ds3unt3c" path="res://Scenes/frog.tscn" id="1_3s84d"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_xr2gp"]
+[ext_resource type="Script" path="res://Scripts/Textbox.gd" id="4_ixasn"]
+[ext_resource type="Texture2D" uid="uid://crilsy2h3g66p" path="res://Assets/Images/Loading_Screen.png" id="5_g0j0x"]
+[ext_resource type="AudioStream" uid="uid://80fv52qeyvwi" path="res://Assets/Audio/mechanical_explosion.wav" id="6_a6sbo"]
+[ext_resource type="AudioStream" uid="uid://dppbdse2xce7h" path="res://Assets/Audio/Horn.wav" id="7_it4hj"]
+[ext_resource type="AudioStream" uid="uid://btuolury5gtk" path="res://Assets/Audio/wobble.mp3" id="8_ulhly"]
+
+[sub_resource type="Environment" id="Environment_r6jai"]
+background_mode = 1
+background_color = Color(0.25098, 0.592157, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.27451, 0.545098, 0.729412, 1)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_xr2gp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.906308, 0.211309, -0.365998, 0, 0.866025, 0.5, 0.422618, 0.453154, -0.784886, -7.018, 9.8, -14)
+projection = 1
+current = true
+size = 10.0
+near = 0.005
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r6jai")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, -1.74846e-07, 0, 6.8879e-08, 0.393942, 0.919135, -1.60707e-07, -0.919135, 0.393942, 0, 0, 0)
+
+[node name="Frog" parent="." instance=ExtResource("1_3s84d")]
+MAX_WIDTH = 4
+
+[node name="Distance" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_top = 728.0
+offset_right = 1872.0
+offset_bottom = 900.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = " [color=#55bbff]Score: 0
+[font_size=40]	Best: 0"
+autowrap_mode = 0
+script = ExtResource("4_ixasn")
+IN = Vector2(5, 728)
+OUT = Vector2(-1695, 728)
+
+[node name="Objects" type="RichTextLabel" parent="."]
+offset_left = 136.0
+offset_top = 888.0
+offset_right = 1922.0
+offset_bottom = 1067.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/shadow_outline_size = 30
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[color=#ff6600]Broken objects: 0
+[wave amp=60 freq=10][rainbow freq=2 sat=0.5][font_size=40]	New high score!"
+autowrap_mode = 0
+script = ExtResource("4_ixasn")
+IN = Vector2(133, 890)
+OUT = Vector2(-2000, 890)
+
+[node name="OhNoMessage" type="RichTextLabel" parent="."]
+offset_left = 192.0
+offset_top = -8.0
+offset_right = 2008.0
+offset_bottom = 767.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/shadow_outline_size = 30
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[right] Oh no!	1
+[font_size=60]You just got hit by a vehicle! 	    1
+[font_size=40] press R to try again	 0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("4_ixasn")
+IN = Vector2(188, -8)
+OUT = Vector2(1600, -8)
+
+[node name="Score" type="RichTextLabel" parent="."]
+offset_left = 18.0
+offset_top = 11.0
+offset_right = 2048.0
+offset_bottom = 847.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/shadow_outline_size = 30
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = " [color=#55bbff]0
+ [color=#ff6600]0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LoadingCover" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("5_g0j0x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_a6sbo")
+
+[node name="Beepsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_it4hj")
+volume_db = 3.0
+
+[node name="Beep" type="Timer" parent="."]
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ulhly")
+volume_db = 1.5
+
+[connection signal="dead" from="Frog" to="." method="_on_frog_dead"]
+[connection signal="moved" from="Frog" to="." method="_on_frog_moved"]
+[connection signal="timeout" from="Beep" to="." method="_on_beep_timeout"]

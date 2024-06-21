@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://wrap4ndjij5o"]
+
+[ext_resource type="PackedScene" uid="uid://bbh0kphure5eh" path="res://Assets/Models/frog.blend" id="1_eatme"]
+[ext_resource type="Script" path="res://Scripts/FrogAnimation.gd" id="2_luxgb"]
+
+[node name="FrogModel" instance=ExtResource("1_eatme")]
+script = ExtResource("2_luxgb")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/4/position = Vector3(0.236455, 0.694484, -0.220033)
+bones/4/scale = Vector3(0.823096, 0.823096, 0.823096)
+bones/6/position = Vector3(0.256646, 0.159904, -0.260483)
+bones/6/rotation = Quaternion(0.58842, 0.742894, 0.186053, -0.259337)
+bones/6/scale = Vector3(0.823096, 0.823096, 0.823096)
+bones/8/position = Vector3(-0.236455, 0.694484, -0.220033)
+bones/8/scale = Vector3(0.823096, 0.823096, 0.823096)
+bones/10/position = Vector3(-0.256646, 0.159904, -0.260483)
+bones/10/scale = Vector3(0.823096, 0.823096, 0.823096)
+bones/12/position = Vector3(-0.0228623, 1.91374, -0.522833)
+bones/12/rotation = Quaternion(0, 0, 1, 0)
+bones/12/scale = Vector3(0, 0, 0)
+
+[node name="Head_2" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.233669, 1.60266e-24, 7.81944e-25, -1.56389e-24, 0.233669, -8.28877e-08, -5.91305e-25, 8.28877e-08, 0.233669, -1.28186e-16, 0.601037, -0.437532)
+bone_idx = 3
+
+[node name="R hand_2" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.158308, -3.72529e-09, 2.67755e-08, -9.31323e-09, 0.158308, -2.79397e-08, -2.79397e-08, 2.98023e-08, 0.158308, 2.68221e-07, 0.42499, -0.253751)
+bone_idx = 5
+
+[node name="R foot_2" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.158308, -1.52737e-07, 4.65661e-08, 1.67638e-07, 0.158308, -2.98023e-08, -4.37722e-08, 2.23517e-08, 0.158308, -2.68221e-07, 0.424989, -0.253751)
+bone_idx = 7
+
+[node name="L hand_2" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.158308, 3.72529e-09, -2.67755e-08, 9.31323e-09, 0.158308, -2.79397e-08, 2.79397e-08, 2.98023e-08, 0.158308, -2.68221e-07, 0.42499, -0.253751)
+bone_idx = 9
+
+[node name="L foot_2" parent="Armature/Skeleton3D" index="4"]
+transform = Transform3D(0.158308, -2.79397e-08, 2.23517e-08, 1.67638e-08, 0.158308, 0, -6.51926e-09, 0, 0.158308, -4.17233e-07, 0.424989, -0.253751)
+bone_idx = 11
+
+[node name="Icosphere" parent="Armature/Skeleton3D" index="5"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.0228623, 1.91374, -0.522833)
+bone_name = "Particlesource"
+bone_idx = 12
+
+[node name="Icosphere" parent="Armature/Skeleton3D/Icosphere" index="0"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false

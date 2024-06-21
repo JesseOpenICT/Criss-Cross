@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://csgvaki3osj3a"]
+
+[ext_resource type="PackedScene" uid="uid://d332ohv1a8d4n" path="res://Scenes/Obstacles/motion.tscn" id="1_e8cu2"]
+[ext_resource type="Script" path="res://Scripts/log.gd" id="1_tl8b1"]
+[ext_resource type="PackedScene" uid="uid://b2lacx6bhsbfc" path="res://Assets/Models/Log.fbx" id="2_83guj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6fip"]
+size = Vector3(1, 0, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7xib"]
+albedo_color = Color(0.454902, 0.356863, 0.278431, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxj8p"]
+
+[node name="Log" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000366211, -1, 0.00543213)
+mesh = SubResource("BoxMesh_y6fip")
+surface_material_override/0 = SubResource("StandardMaterial3D_u7xib")
+script = ExtResource("1_tl8b1")
+
+[node name="Log" parent="." instance=ExtResource("2_83guj")]
+transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.238892, 0)
+
+[node name="OnLog" type="Area3D" parent="." groups=["Log"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OnLog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_gxj8p")
+
+[node name="Motion" parent="." instance=ExtResource("1_e8cu2")]
+
+[node name="Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.508755, 0.291313, -0.0762024)
+
+[node name="Spawn2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509, 0.291722, 0.22954)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

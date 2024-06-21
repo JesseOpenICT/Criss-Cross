@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2q75ro2w7c5k"]
+
+[ext_resource type="Script" path="res://Scripts/car.gd" id="1_x8o4q"]
+[ext_resource type="PackedScene" uid="uid://d332ohv1a8d4n" path="res://Scenes/Obstacles/motion.tscn" id="2_04q33"]
+[ext_resource type="PackedScene" uid="uid://cogporl1xf7x6" path="res://Scenes/vehicles.tscn" id="2_ny8c7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxj8p"]
+size = Vector3(0.5, 1, 0.4)
+
+[node name="Car" type="Node3D"]
+script = ExtResource("1_x8o4q")
+
+[node name="vehicles" parent="." instance=ExtResource("2_ny8c7")]
+
+[node name="Hurtbox" type="Area3D" parent="." groups=["Lethal"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("BoxShape3D_gxj8p")
+
+[node name="Motion" parent="." instance=ExtResource("2_04q33")]
+
+[node name="Recovery" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Recovery" to="." method="_on_recovery_timeout"]

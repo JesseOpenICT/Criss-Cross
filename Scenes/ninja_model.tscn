@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://di0l5cxiwjwux"]
+
+[ext_resource type="PackedScene" uid="uid://dolimwfbihm5f" path="res://Assets/Models/NinjaFrog_Real.blend" id="1_ivgu8"]
+[ext_resource type="Script" path="res://Scripts/FrogAnimation.gd" id="2_ewy80"]
+
+[node name="NinjaFrog_Real" instance=ExtResource("1_ivgu8")]
+script = ExtResource("2_ewy80")
+
+[node name="Head_2" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.233669, 1.60266e-24, 7.81944e-25, -1.56389e-24, 0.233669, -8.28877e-08, -5.91305e-25, 8.28877e-08, 0.233669, -1.28186e-16, 0.601037, -0.437532)
+bone_idx = 3
+
+[node name="Plane_001" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1.17773, 9.09899e-24, 3.79663e-24, -8.89219e-24, 1.17773, -4.20958e-07, -3.53329e-24, 4.20958e-07, 1.17773, 3.30872e-24, 0.49514, -5.96046e-08)
+bone_idx = 4
+
+[node name="R hand_2" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.192332, -1.86265e-09, 3.58559e-08, -9.31323e-09, 0.192332, -3.1665e-08, -1.95578e-08, 3.53903e-08, 0.192332, 2.98023e-08, 0.504472, -0.336725)
+bone_idx = 6
+
+[node name="R foot_2" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.192332, 3.53903e-08, -2.42144e-08, -2.42144e-08, 0.192332, -7.45058e-09, 5.58794e-09, -1.49012e-08, 0.192332, 2.38419e-07, 0.504472, -0.336725)
+bone_idx = 8
+
+[node name="L hand_2" parent="Armature/Skeleton3D" index="4"]
+transform = Transform3D(0.192332, 1.86265e-09, -3.58559e-08, 9.31323e-09, 0.192332, -3.1665e-08, 1.95578e-08, 3.53903e-08, 0.192332, -2.98023e-08, 0.504472, -0.336725)
+bone_idx = 10
+
+[node name="L foot_2" parent="Armature/Skeleton3D" index="5"]
+transform = Transform3D(0.192332, -3.53903e-08, 2.42144e-08, 2.42144e-08, 0.192332, -7.45058e-09, -5.58794e-09, -1.49012e-08, 0.192332, -2.38419e-07, 0.504472, -0.336725)
+bone_idx = 12
+
+[node name="Plane" parent="Armature/Skeleton3D" index="6"]
+transform = Transform3D(1.17773, 1.07533e-23, -1.75776e-23, 1.07533e-23, 1.17773, -1.49012e-07, 2.07829e-23, 1.49012e-07, 1.17773, -7.44463e-24, 0.49514, -5.96046e-08)
+bone_idx = 13
+
+[node name="Icosphere" parent="Armature/Skeleton3D" index="7"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.0228623, 1.91374, -0.522833)
+bone_idx = 15

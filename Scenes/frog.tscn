@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://pjs8ds3unt3c"]
+
+[ext_resource type="Script" path="res://Scripts/Frog.gd" id="1_bypau"]
+[ext_resource type="PackedScene" uid="uid://wrap4ndjij5o" path="res://Scenes/frog_model.tscn" id="2_14nq5"]
+[ext_resource type="PackedScene" uid="uid://di0l5cxiwjwux" path="res://Scenes/ninja_model.tscn" id="3_ckhdx"]
+[ext_resource type="AudioStream" uid="uid://d2lu7x8ajtvu7" path="res://Assets/Audio/swishes/P.wav" id="3_uo0pf"]
+[ext_resource type="AudioStream" uid="uid://dghscge6jiefn" path="res://Assets/Audio/pop.ogg" id="3_xpbae"]
+[ext_resource type="AudioStream" uid="uid://bxhidqtoelufu" path="res://Assets/Audio/NinjaMode.ogg" id="6_02arm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nvvu3"]
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2n0kr"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.611765)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xafbx"]
+height = 1.0
+radius = 0.35
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_052m3"]
+size = Vector3(1.5, 1, 1)
+
+[node name="Frog" type="Node3D"]
+script = ExtResource("1_bypau")
+
+[node name="Shape" parent="." instance=ExtResource("2_14nq5")]
+
+[node name="Shadow" type="MeshInstance3D" parent="Shape"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.409922, 0)
+mesh = SubResource("CylinderMesh_nvvu3")
+surface_material_override/0 = SubResource("StandardMaterial3D_2n0kr")
+
+[node name="Ninjafrog" parent="." instance=ExtResource("3_ckhdx")]
+visible = false
+
+[node name="Shadow" type="MeshInstance3D" parent="Ninjafrog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.409922, 0)
+mesh = SubResource("CylinderMesh_nvvu3")
+surface_material_override/0 = SubResource("StandardMaterial3D_2n0kr")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+
+[node name="Cilinder" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("CylinderShape3D_xafbx")
+
+[node name="Hitbox" type="Area3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox/Hitbox"]
+shape = SubResource("BoxShape3D_052m3")
+
+[node name="MovePause" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="JumpDuration" type="Timer" parent="."]
+
+[node name="Power" type="Marker2D" parent="."]
+position = Vector2(64, 968)
+
+[node name="Polygon2D" type="Polygon2D" parent="Power"]
+position = Vector2(25, 0)
+scale = Vector2(2.5, 2.5)
+color = Color(0.956863, 0.686275, 0.32549, 1)
+polygon = PackedVector2Array(-10, 10, 700, 10, 700, -10, -10, -10)
+
+[node name="Timer" type="Marker2D" parent="."]
+position = Vector2(64, 1040)
+
+[node name="Polygon2D" type="Polygon2D" parent="Timer"]
+position = Vector2(25, 0)
+scale = Vector2(2.5, 2.5)
+color = Color(1, 0.415686, 0.360784, 1)
+polygon = PackedVector2Array(-10, 10, 700, 10, 700, -10, -10, -10)
+
+[node name="Markers" type="Marker2D" parent="."]
+position = Vector2(64, 968)
+scale = Vector2(2.5, 2.5)
+
+[node name="P" type="Polygon2D" parent="Markers"]
+polygon = PackedVector2Array(-6.4, -6.40002, 0, 0, 6.4, -6.40002, 6.4, -25.6, -6.4, -25.6)
+
+[node name="Label" type="Label" parent="Markers/P"]
+z_index = 1
+offset_left = -6.8
+offset_top = -29.2
+offset_right = 121.2
+offset_bottom = 246.8
+scale = Vector2(0.1, 0.1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 192
+text = "P"
+horizontal_alignment = 1
+
+[node name="T" type="Polygon2D" parent="Markers"]
+polygon = PackedVector2Array(-6.4, -6.40002, 0, 0, 6.4, -6.40002, 6.4, -25.6, -6.4, -25.6)
+
+[node name="Label" type="Label" parent="Markers/T"]
+z_index = 1
+offset_left = -6.2
+offset_top = -28.8
+offset_right = 121.8
+offset_bottom = 247.2
+scale = Vector2(0.1, 0.1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 192
+text = "T"
+horizontal_alignment = 1
+
+[node name="K" type="Polygon2D" parent="Markers"]
+position = Vector2(-5.72205e-06, 0)
+polygon = PackedVector2Array(-6.4, -6.40002, 0, 0, 6.4, -6.40002, 6.4, -25.6, -6.4, -25.6)
+
+[node name="Label" type="Label" parent="Markers/K"]
+z_index = 1
+offset_left = -7.2
+offset_top = -28.8
+offset_right = 120.8
+offset_bottom = 247.2
+scale = Vector2(0.1, 0.1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 192
+text = "K"
+horizontal_alignment = 1
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xpbae")
+volume_db = -0.5
+
+[node name="Swipe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uo0pf")
+
+[node name="Ninja" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_02arm")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="timeout" from="MovePause" to="." method="_on_move_pause_timeout"]
+[connection signal="timeout" from="JumpDuration" to="." method="_on_jump_duration_timeout"]

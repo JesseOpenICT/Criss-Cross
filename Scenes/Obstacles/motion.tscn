@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d332ohv1a8d4n"]
+
+[ext_resource type="Script" path="res://Scripts/ObjectMotion.gd" id="1_dbljv"]
+
+[node name="Motion" type="Node"]
+script = ExtResource("1_dbljv")
